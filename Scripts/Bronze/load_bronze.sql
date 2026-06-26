@@ -1,3 +1,22 @@
+/*
+========================================================
+Store Procedure: Load Bronze Layer (Source --> Bronze)
+========================================================
+Script:
+	Este stored procedure carga la informacion en la capa bronze desde archivos CSV
+	Realiza las siguientes acciones:
+	- Trunca las tablas de la capa antes de cargar informacion
+	- Usa 'Bulk Insert' para cargar la informacion desde los archivos CSV
+
+Parameters:
+	none
+	Este procedimiento no acepta ni regresa ningun valor
+
+Usage example:
+	EXEC bronze.load_bronze;
+========================================================
+*/
+
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS -- Crea un procedimiento executable posteriormente con el codigo EXEC bronze.load_bronze;
 BEGIN
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME;; -- Crea las variables para medir el tiempo de la consulta
