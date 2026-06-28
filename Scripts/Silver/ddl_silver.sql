@@ -31,12 +31,13 @@ GO
 
 CREATE TABLE silver.crm_prd_info (
     prd_id              INT,
+    cat_id              NVARCHAR(50),   -- Agregamos esta columna durante la silver layer
     prd_key             NVARCHAR(50),
     prd_nm              NVARCHAR(50),
     prd_cost            INT,
     prd_line            NVARCHAR(50),
-    prd_start_dt        DATETIME,
-    prd_end_dt          DATETIME,
+    prd_start_dt        DATE,           -- el formato de fecha nos permite trabajar de mejor manera
+    prd_end_dt          DATE,           -- el formato de fecha nos permite trabajar de mejor manera
     dwh_create_date     DATETIME2 DEFAULT GETDATE() -- DATETIME2 es de SQLServer, y DEFAULT usado al no indicar valor en el INSERT
 );
 GO
