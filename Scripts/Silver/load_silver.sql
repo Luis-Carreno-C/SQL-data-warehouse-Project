@@ -2,7 +2,9 @@
 silver.crm_cust_info LOAD
 */
 
+PRINT '>> Truncating Table: silver.crm_cust_info'
 TRUNCATE TABLE silver.crm_cust_info;
+PRINT '>> Inserting Data Into: silver.crm_cust_info'
 INSERT INTO silver.crm_cust_info (
 	cst_id,
 	cst_key,
@@ -42,8 +44,9 @@ WHERE versions = 1
 
 
 -- PRODUCT TABLE
-  
+PRINT '>> Truncating Table: silver.crm_prd_info'  
 TRUNCATE TABLE silver.crm_prd_info;
+PRINT '>> Inserting Data Into: silver.crm_prd_info'
 INSERT INTO silver.crm_prd_info(
 	prd_id,
 	cat_id, 
@@ -75,8 +78,9 @@ FROM bronze.crm_prd_info
 
 
 -- SALES TABLE
-
+PRINT '>> Truncating Table: silver.crm_sales_details'  
 TRUNCATE TABLE silver.crm_sales_details;
+PRINT '>> Inserting Data Into: silver.crm_sales_details'
 INSERT INTO silver.crm_sales_details(
 	sls_ord_num,
 	sls_prd_key,
@@ -122,3 +126,63 @@ CASE WHEN sls_price <= 0 OR sls_price IS NULL
 	 ELSE sls_price
 END AS sls_price
 FROM bronze.crm_sales_details;
+
+
+/*
+=======================
+Carga de tablas de CRM
+=======================
+*/
+
+PRINT '>> Truncating Table: silver.crm_cust_info'  
+TRUNCATE TABLE silver.crm_cust_info;
+PRINT '>> Inserting Data Into: silver.erp_cust_az12'
+INSERT INTO silver.erp_cust_az12(
+	cid,
+	bdate,
+	gen
+)
+
+SELECT
+CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid)) -- Se normaliza la id key, para conectar con erp
+	 ELSE cid
+END AS cid,
+CASE WHEN bdate > GETDATE() THEN NULL -- Fechas de nacimiento mayor a hoy son consideradas nulas
+	 ELSE bdate
+END AS bdate,
+CASE WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female' -- Se normaliza los generos presentes en gen
+	 WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
+	 ELSE 'n/a'
+END AS gen
+FROM bronze.erp_cust_az12
+
+
+PRINT '>> Truncating Table: silver.erp_loc_a101'  
+TRUNCATE TABLE silver.erp_loc_a101;
+PRINT '>> Inserting Data Into: silver.erp_loc_a101'
+INSERT INTO silver.erp_loc_a101 (cid, cntry)
+
+SELECT
+REPLACE(cid, '-', '') AS cid,
+CASE WHEN UPPER(TRIM(cntry)) IN ('DE', 'GERMANY') THEN 'Germany'
+	 WHEN UPPER(TRIM(cntry)) IN ('US', 'USA', 'UNITED STATES') THEN 'United States'
+	 WHEN UPPER(TRIM(cntry)) IN ('UK', 'UNITED KINGDOM') THEN 'United Kingdom'
+	 WHEN UPPER(TRIM(cntry)) IN ('AU', 'AUSTRALIA') THEN 'Australia'
+	 WHEN UPPER(TRIM(cntry)) IN ('FR', 'FRANCE') THEN 'France'
+	 WHEN UPPER(TRIM(cntry)) IN ('CA', 'CANADA') THEN 'Canada'
+	 ELSE 'n/a'
+END AS cntry
+FROM bronze.erp_loc_a101
+
+PRINT '>> Truncating Table: silver.erp_px_cat_g1v2'  
+TRUNCATE TABLE silver.erp_px_cat_g1v2
+PRINT '>> Inserting Data Into: silver.erp_px_cat_g1v2'
+INSERT INTO silver.erp_px_cat_g1v2
+(id, cat, subcat, maintenance )
+
+SELECT
+id,
+cat,
+subcat,
+maintenance
+FROM bronze.erp_px_cat_g1v2
