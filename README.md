@@ -6,7 +6,7 @@ Este proyecto demuestra una solución integral de **data warehousing y analític
 
 # Arquitectura de Datos
 
-![Image Alt] (https://github.com/Luis-Carreno-C/SQL-data-warehouse-Project/blob/a42db499934abfeaf56576af14e92e8b3be56e2e/Docs/Images/Data%20flow%20diagram%20-%20DWH%20Baraa.png)
+![Image Alt] (Docs/Images/Data flow diagram - DWH Baraa.png)
 
 La arquitectura de datos de este proyecto sigue la **Arquitectura Medallion**, compuesta por las capas **Bronze, Silver y Gold**.
 
