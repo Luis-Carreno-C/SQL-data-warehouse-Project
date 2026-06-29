@@ -31,6 +31,9 @@ Contiene **datos listos para negocio**, modelados en un **esquema estrella (Star
 Este proyecto incluye:
 
 ### Data Architecture
+
+![Arquitectura](Docs/Images/Data flow diagram - DWH Baraa.png)
+
 Diseño de un **Data Warehouse moderno** utilizando la arquitectura Medallion (Bronze, Silver, Gold).
 
 ### ETL Pipelines
