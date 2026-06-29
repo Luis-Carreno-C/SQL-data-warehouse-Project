@@ -32,7 +32,7 @@ Este proyecto incluye:
 
 ### Data Architecture
 
-![Arquitectura](Docs/Images/Data flow diagram - DWH Baraa.png)
+![Arquitectura] https://github.com/Luis-Carreno-C/SQL-data-warehouse-Project/blob/a42db499934abfeaf56576af14e92e8b3be56e2e/Docs/Images/Data%20flow%20diagram%20-%20DWH%20Baraa.png
 
 Diseño de un **Data Warehouse moderno** utilizando la arquitectura Medallion (Bronze, Silver, Gold).
 
