@@ -1,12 +1,12 @@
 # Proyecto de Data Warehouse y Analytics
 
-Este proyecto demuestra una solución integral de **data warehousing y analítica**, desde la construcción de un data warehouse hasta la generación de insights accionables. Diseñado como un proyecto de portafolio, destaca **buenas prácticas de la industria en ingeniería de datos y análisis de datos**.
+Este proyecto demuestra una solución integral de **data warehousing y analítica**, desde la construcción de un data warehouse hasta la generación de insights accionables. Diseñado como un proy[...]
 
 ---
 
 # Arquitectura de Datos
 
-![Image Alt] (Docs/Images/Data flow diagram - DWH Baraa.png)
+![Arquitectura de Datos - Data Warehouse](Docs/Images/Data%20flow%20diagram%20-%20DWH%20Baraa.png)
 
 La arquitectura de datos de este proyecto sigue la **Arquitectura Medallion**, compuesta por las capas **Bronze, Silver y Gold**.
 
