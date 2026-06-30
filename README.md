@@ -6,8 +6,6 @@ Este proyecto demuestra una solución integral de **data warehousing y analític
 
 # Arquitectura de Datos
 
-![Arquitectura de Datos - Data Warehouse](Docs/Images/Data%20flow%20diagram%20-%20DWH%20Baraa.png)
-
 La arquitectura de datos de este proyecto sigue la **Arquitectura Medallion**, compuesta por las capas **Bronze, Silver y Gold**.
 
 ### Bronze Layer
@@ -25,6 +23,8 @@ Todo esto con el objetivo de **preparar los datos para análisis**.
 
 ### Gold Layer
 Contiene **datos listos para negocio**, modelados en un **esquema estrella (Star Schema)** requerido para **reporting y analítica**.
+
+![Arquitectura de Datos - Data Warehouse](Docs/Images/data_flow.png)
 
 ---
 
